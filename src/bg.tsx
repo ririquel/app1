@@ -1,12 +1,9 @@
-import React, { useEffect } from 'react'
-import { StyleSheet, Text, View, Button } from 'react-native'
-import { request } from './src/location_request';
-import BgTracking from './src/bg';
+import React, { Component } from 'react';
+import { Alert } from 'react-native';
 import BackgroundGeolocation from '@darron1217/react-native-background-geolocation';
 
-const App = () => {
-  
-  useEffect(() => {
+class BgTracking extends Component {
+  componentDidMount() {
     BackgroundGeolocation.configure({
       desiredAccuracy: BackgroundGeolocation.HIGH_ACCURACY,
       stationaryRadius: 50,
@@ -21,15 +18,15 @@ const App = () => {
       fastestInterval: 5000,
       activitiesInterval: 10000,
       stopOnStillActivity: false,
-      url: 'http://192.168.18.84:3000',
+      url: 'http://192.168.81.15:3000/location',
       httpHeaders: {
-      //  'X-FOO': 'bar'
+        'X-FOO': 'bar'
       },
       // customize post properties
       postTemplate: {
-        latitud: '@latitude',
-        longitud: '@longitude',
-      //  foo: 'bar' // you can also add your own properties
+        lat: '@latitude',
+        lon: '@longitude',
+        foo: 'bar' // you can also add your own properties
       }
     });
 
@@ -105,28 +102,15 @@ const App = () => {
         BackgroundGeolocation.start(); //triggers start on start event
       }
     });
-    //effect
-    return () => {
-    BackgroundGeolocation.removeAllListeners();
 
-   //   cleanup
-    }
-  }, [])
-
-  const help = () => {
-    console.log("help");
-    request()
+    // you can also just start without checking for status
+    // BackgroundGeolocation.start();
   }
-  return (
-    <View style={styles.center}>
-      <Text>Alert-SOS</Text>
-      <Button onPress={help} title='help'>AYUDA</Button>
-    </View>
-  )
+
+  componentWillUnmount() {
+    // unregister all event listeners
+    BackgroundGeolocation.removeAllListeners();
+  }
 }
 
-export default App
-
-const styles = StyleSheet.create({
-  center: { alignItems: 'center', justifyContent: "center", flex: 1 }
-})
+export default BgTracking;

@@ -725,6 +725,13 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
+"@darron1217/react-native-background-geolocation@^0.6.6":
+  version "0.6.6"
+  resolved "https://registry.yarnpkg.com/@darron1217/react-native-background-geolocation/-/react-native-background-geolocation-0.6.6.tgz#034f3e5f08aeceb64e3347694d005d4d5b56224b"
+  integrity sha512-IQHSg4ybq8qDdf4mNZPqvV5Z2vTBKp1ehuqrc2zDdtJr7ihLTsQMGjhiGZ0BLVL+pwdOKrp0Q/TP3lFVfpyRKA==
+  dependencies:
+    plist "^3.0.1"
+
 "@eslint/eslintrc@^0.4.3":
   version "0.4.3"
   resolved "https://registry.yarnpkg.com/@eslint/eslintrc/-/eslintrc-0.4.3.tgz#9e42981ef035beb3dd49add17acb96e8ff6f394c"
